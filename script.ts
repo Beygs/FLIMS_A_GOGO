@@ -21,6 +21,7 @@ interface Movie {
   Type: string;
   Writer: string;
   Year: string;
+  Response: "True" | "False";
   [key: string]: any;
 }
 
@@ -39,28 +40,44 @@ const movieDetails = (movieTitle: string): void => {
 
   fetch(url)
     .then(response => response.json())
-    .then(result => showMovie(result))
+    .then(result => { if (result.Response === "True") showMovie(result) })
+    .then(() => lazyLoadImages())
     .catch(error => console.error("Oups ! Une erreur a été rencontrée =>" + error));
-}
-
-const showMovie = (movieInfos: Movie): void => {
-  const { Poster, Title, Type, Year } = movieInfos;
-
-  movies.innerHTML += `
+  }
+  
+  const showMovie = (movieInfos: Movie): void => {
+    const { Poster, Title, Type, Year } = movieInfos;
+    
+    movies.innerHTML += `
     <div class="movie">
-      <img src="${Poster}" alt="Movie Poster" class="movie__poster">
-      <h3 class="movie__title">${Title}</h3>
-      <h4 class="movie__type">${Type}</h4>
+    <img data-src="${Poster !== "N/A" ? Poster : "./camera.jpg"}" src="./camera.jpg" alt="Movie Poster" class="movie__poster">
+    <h3 class="movie__title">${Title}</h3>
+    <h4 class="movie__type">${Type}</h4>
       <h4 class="movie__year>${Year}</h4>
-    </div>
+      </div>
   `
 }
 
 form.addEventListener("submit", e => {
   e.preventDefault();
-
+  
   const input: HTMLInputElement = form.querySelector("#movieSearch");
   movies.innerHTML = "";
-
+  
   searchMovie(input.value);
-})
+});
+
+const lazyLoadImages = () => {
+  const imageObserver = new IntersectionObserver((entries, imgObserver) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting) {
+        const lazyImg = entry.target;
+        lazyImg.src = lazyImg.dataset.src;
+      }
+    });
+  });
+  
+  const posters = document.querySelectorAll(".movie__poster")
+  
+  posters.forEach(poster => imageObserver.observe(poster));
+}
