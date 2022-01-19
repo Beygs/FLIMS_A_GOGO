@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "module": "ES2015",
+    "lib": ["DOM", "ES2015"],
+    "watch": true
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}
