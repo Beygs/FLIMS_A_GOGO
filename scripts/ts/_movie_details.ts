@@ -77,8 +77,10 @@ export class MovieDetails {
       Year
     } = this.movie;
 
+    
     this.modal.classList.add("active");
 
+    const cardHeader = this.modal.querySelector(".modal__card .header");
     const cardContent = this.modal.querySelector(".modal__card .content");
     let countryFlag: string;
 
@@ -88,9 +90,11 @@ export class MovieDetails {
       countryFlag = "🏳️";
     }
 
+    if (Poster !== "N/A") this.modal.querySelector("img").src = Poster;
+
     cardContent.innerHTML = `
     <h3 class="title">${Title}</h3>
-    <span class="type">(${typeTrad[Type]})</span>
+    <p class="type">(${typeTrad[Type]})</p>
     <p class="details">
       <span class="year">${Year}</span>&#32;
       <span class="genre">${Genre}</span>&#32;

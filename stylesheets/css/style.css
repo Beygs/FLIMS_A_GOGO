@@ -103,17 +103,25 @@ h1 {
     padding: 3rem;
     background-color: white;
     border-radius: 2rem;
-    width: 80%;
-    height: 80%;
+    width: 50%;
     background-position: center;
     background-repeat: none;
     background-size: cover; }
-    .modal__card .card__header {
-      height: 20rem; }
+    .modal__card .header {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      margin-bottom: 2rem; }
+    .modal__card .type {
+      margin-bottom: 1rem; }
+    .modal__card .details {
+      margin-bottom: 1rem; }
     .modal__card .rated {
       position: relative;
       display: inline-block;
       height: 1em; }
+    .modal__card .plot {
+      margin-top: 2rem; }
 
 .blurred {
   filter: blur(5px); }
@@ -140,17 +148,27 @@ h1 {
       color: #858585; }
       .search-section__card h1 .char {
         animation: waves 3s infinite alternate; }
-      .search-section__card h1 .char:nth-of-type(0) {
+        .search-section__card h1 .char:nth-child(1):hover {
+          color: #f57e00; }
+        .search-section__card h1 .char:nth-child(2):hover {
+          color: #4cae4f; }
+        .search-section__card h1 .char:nth-child(3):hover {
+          color: #f57e00; }
+        .search-section__card h1 .char:nth-child(4):hover {
+          color: #fcc14a; }
+        .search-section__card h1 .char:nth-child(5):hover {
+          color: #002e47; }
+      .search-section__card h1 .char:nth-of-type(10n + 0) {
         animation-delay: 0ms; }
-      .search-section__card h1 .char:nth-of-type(1) {
+      .search-section__card h1 .char:nth-of-type(10n + 1) {
         animation-delay: 150ms; }
-      .search-section__card h1 .char:nth-of-type(2) {
+      .search-section__card h1 .char:nth-of-type(10n + 2) {
         animation-delay: 300ms; }
-      .search-section__card h1 .char:nth-of-type(3) {
+      .search-section__card h1 .char:nth-of-type(10n + 3) {
         animation-delay: 450ms; }
-      .search-section__card h1 .char:nth-of-type(4) {
+      .search-section__card h1 .char:nth-of-type(10n + 4) {
         animation-delay: 600ms; }
-      .search-section__card h1 .char:nth-of-type(5) {
+      .search-section__card h1 .char:nth-of-type(10n + 5) {
         animation-delay: 750ms; }
     .search-section__card form {
       display: flex;
@@ -189,6 +207,71 @@ h1 {
       justify-content: center;
       margin-left: 2rem; }
     .movies-section .movie__title {
-      margin-bottom: 1.5rem; }
+      margin-bottom: 1.5rem;
+      color: #f57e00; }
+    .movies-section .movie__type {
+      color: #fcc14a; }
+    .movies-section .movie__year {
+      color: #4cae4f; }
+    .movies-section .movie__more {
+      line-height: initial;
+      margin-top: 2rem;
+      padding: 1em;
+      background-color: #f57e00;
+      border-radius: 2rem;
+      box-shadow: -3px -3px 0 #002e47;
+      color: white;
+      cursor: pointer;
+      width: fit-content; }
+      .movies-section .movie__more:hover {
+        transform: translate(-2px, -2px);
+        box-shadow: -1px -1px 0 #002e47; }
+
+.arrow-up {
+  position: fixed;
+  bottom: 3rem;
+  right: 2rem;
+  color: white;
+  font-size: 1.5rem;
+  height: 3rem;
+  width: 3rem;
+  background-color: #f57e00;
+  border-radius: 50%;
+  opacity: 0;
+  visibility: hidden;
+  cursor: pointer;
+  transition: all .4s ease; }
+  .arrow-up::after {
+    content: '\f176';
+    font-family: FontAwesome;
+    display: block;
+    position: absolute;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    text-align: center;
+    line-height: 3rem;
+    transition: .2s ease;
+    transform-origin: 50% 0;
+    transform: translate3d(0px, 105%, 0px) rotateX(-90deg); }
+  .arrow-up i {
+    position: relative;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    line-height: 3rem;
+    transition: all .2s;
+    transform-origin: 50% 0%;
+    transform-style: preserve-3d; }
+  .arrow-up:hover {
+    opacity: 1; }
+    .arrow-up:hover i {
+      transform: translate3d(0, 0, -1.5rem) rotateX(90deg);
+      animation: arrowmove 1s ease forwards; }
+    .arrow-up:hover::after {
+      transform: translate3d(0, 0, 0) rotateX(0); }
 
 /*# sourceMappingURL=style.css.map */

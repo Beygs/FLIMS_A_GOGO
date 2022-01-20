@@ -1,19 +1,22 @@
-import { ENV } from "../env.js";
 import { MovieDetails, typeTrad } from "./_movie_details.js";
+import { ENV } from "../env.js";
 Splitting();
-const movies = document.querySelector(".movies-section");
+const main = document.querySelector("main");
+const searchSection = document.querySelector(".search-section");
+const moviesSection = document.querySelector(".movies-section");
 const form = document.querySelector("form");
 const modal = document.querySelector(".modal");
+const arrowUp = document.querySelector(".arrow-up");
 let moviesArray = [];
 const searchMovie = (search, page = 1) => {
-    const url = `http://www.omdbapi.com/?apikey=${ENV["OMDB_KEY"]}&s=${search}&p=${page}`;
+    const url = `https://www.omdbapi.com/?apikey=${ENV["OMDB_KEY"]}&s=${search}&p=${page}`;
     fetch(url)
         .then(response => response.json())
         .then(result => result.Search.forEach(movie => movieDetails(movie.Title)))
         .catch(error => console.error("Oups ! Une erreur a été rencontrée =>" + error));
 };
 const movieDetails = (movieTitle) => {
-    const url = `http://www.omdbapi.com/?apikey=${ENV["OMDB_KEY"]}&t=${movieTitle}`;
+    const url = `https://www.omdbapi.com/?apikey=${ENV["OMDB_KEY"]}&t=${movieTitle}`;
     fetch(url)
         .then(response => response.json())
         .then(result => { if (result.Response === "True")
@@ -23,8 +26,7 @@ const movieDetails = (movieTitle) => {
 };
 const showMovie = (movie) => {
     const { Poster, Title, Type, Year, imdbID } = movie;
-    console.log(movie);
-    movies.innerHTML += `
+    moviesSection.innerHTML += `
   <div class="movie">
     <img data-src="${Poster !== "N/A" ? Poster : "./no_poster.png"}" src="./no_poster.png" alt="Movie Poster" class="movie__poster lazy-image">
     <div class="movie__infos">
@@ -43,21 +45,26 @@ const showMovie = (movie) => {
         btn.addEventListener("click", () => {
             const movieId = btn.id;
             const movieDetails = moviesArray.find(m => m.imdbID === movieId);
+            main.classList.add("blurred");
+            document.body.style.overflowY = "hidden";
             movieDetails.knowMore();
         });
     });
-    movies.scrollIntoView({ behavior: "smooth" });
+    moviesSection.scrollIntoView({ behavior: "smooth" });
+    arrowUpObserver.observe(moviesSection.querySelector(".movie"));
 };
 form.addEventListener("submit", e => {
     e.preventDefault();
     const input = form.querySelector("#movieSearch");
-    movies.innerHTML = "";
+    moviesSection.innerHTML = "";
     moviesArray = [];
     searchMovie(input.value);
 });
 const blocker = modal.querySelector(".modal__blocker");
 blocker.addEventListener("click", () => {
     modal.classList.remove("active");
+    main.classList.remove("blurred");
+    document.body.style.overflowY = "auto";
 });
 const lazyLoadImages = () => {
     const imageObserver = new IntersectionObserver((entries, imgObserver) => {
@@ -73,3 +80,27 @@ const lazyLoadImages = () => {
     const posters = document.querySelectorAll(".lazy-image");
     posters.forEach((poster) => imageObserver.observe(poster));
 };
+let prevRatio = 0.0;
+const arrowUpObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.intersectionRatio > prevRatio) {
+            arrowUp.setAttribute("style", "visibility: visible; opacity: 1");
+        }
+        prevRatio = entry.intersectionRatio;
+    });
+}, {
+    threshold: [0, 0.5]
+});
+const arrowHideObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.intersectionRatio > 0.95) {
+            arrowUp.setAttribute("style", "visibility: hidden; opacity: 0");
+        }
+    });
+}, {
+    threshold: [0.95, 1]
+});
+arrowHideObserver.observe(searchSection);
+arrowUp.addEventListener("click", () => {
+    window.scroll({ top: 0, left: 0, behavior: "smooth" });
+});

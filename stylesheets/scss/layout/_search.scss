@@ -23,10 +23,30 @@
       
       .char {
         animation: waves 3s infinite alternate;
+
+        &:nth-child(1):hover {
+          color: $orange;
+        }
+
+        &:nth-child(2):hover {
+          color: $green;
+        }
+
+        &:nth-child(3):hover {
+          color: $orange;
+        }
+
+        &:nth-child(4):hover {
+          color: $yellow;
+        }
+
+        &:nth-child(5):hover {
+          color: $blue;
+        }
       }
 
       @for $i from 0 through 5 {
-        .char:nth-of-type(#{$i}) {
+        .char:nth-of-type(10n + #{$i}) {
           animation-delay: $i * 150ms;
         }
       }

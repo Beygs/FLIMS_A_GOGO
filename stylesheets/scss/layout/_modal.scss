@@ -23,20 +23,34 @@
     padding: 3rem;
     background-color: white;
     border-radius: 2rem;
-    width: 80%;
-    height: 80%;
+    width: 50%;
     background-position: center;
     background-repeat: none;
     background-size: cover;
 
-    .card__header {
-      height: 20rem;
+    .header {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+
+    .type {
+      margin-bottom: 1rem;
+    }
+
+    .details {
+      margin-bottom: 1rem;
     }
 
     .rated {
       position: relative;
       display: inline-block;
       height: 1em;
+    }
+
+    .plot {
+      margin-top: 2rem;
     }
   }
 }
