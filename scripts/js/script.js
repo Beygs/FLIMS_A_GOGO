@@ -1,4 +1,4 @@
-import { MovieDetails, typeTrad } from "./_movie_details.js";
+import { MovieDetails, typeTrad } from "./movie_details.js";
 import { ENV } from "../env.js";
 Splitting();
 const main = document.querySelector("main");

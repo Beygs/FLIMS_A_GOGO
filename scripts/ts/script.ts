@@ -1,4 +1,4 @@
-import { Movie, MovieDetails, typeTrad } from "./_movie_details.js";
+import { Movie, MovieDetails, typeTrad } from "./movie_details.js";
 import { ENV } from "../env.js";
 
 declare const Splitting: () => void;
