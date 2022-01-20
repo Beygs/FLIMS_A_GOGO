@@ -33,14 +33,16 @@ export class MovieDetails {
         return this._modal;
     }
     knowMore() {
+        if (this.movie.Country === "USA")
+            this.movie.Country = "United States";
         const { Actors, Awards, BoxOffice, Country, Director, Genre, Plot, Poster, Rated, Runtime, Title, Type, Writer, Year } = this.movie;
         this.modal.classList.add("active");
         const cardContent = this.modal.querySelector(".modal__card .content");
         let countryFlag;
         try {
-            countryFlag = countryFlagEmoji.list.find(data => data.name === Country).emoji;
+            countryFlag = countryFlagEmoji.list.find(data => data.name === Country.split(",")[0]).emoji;
         }
-        catch (_a) {
+        catch (e) {
             countryFlag = "🏳️";
         }
         cardContent.innerHTML = `

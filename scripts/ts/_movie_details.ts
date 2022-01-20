@@ -58,6 +58,8 @@ export class MovieDetails {
   }
 
   knowMore() {
+    if (this.movie.Country === "USA") this.movie.Country = "United States";
+
     const {
       Actors,
       Awards,
@@ -78,11 +80,11 @@ export class MovieDetails {
     this.modal.classList.add("active");
 
     const cardContent = this.modal.querySelector(".modal__card .content");
-    let countryFlag: string;    
+    let countryFlag: string;
 
     try {
-      countryFlag = countryFlagEmoji.list.find(data => data.name === Country).emoji;
-    } catch {
+      countryFlag = countryFlagEmoji.list.find(data => data.name === Country.split(",")[0]).emoji;
+    } catch (e) {
       countryFlag = "🏳️";
     }
 
