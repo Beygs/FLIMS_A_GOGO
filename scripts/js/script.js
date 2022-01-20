@@ -63,6 +63,8 @@ const showMovie = (movie) => {
 };
 form.addEventListener("submit", (e) => {
     e.preventDefault();
+    e.stopPropagation();
+    e.stopImmediatePropagation();
     page = 1;
     moviesSection.innerHTML = "";
     moviesArray = [];

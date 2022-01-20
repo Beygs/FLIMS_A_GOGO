@@ -82,6 +82,8 @@ const showMovie = (movie: Movie): void => {
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
+  e.stopPropagation();
+  e.stopImmediatePropagation();
   
   page = 1;
   moviesSection.innerHTML = "";
