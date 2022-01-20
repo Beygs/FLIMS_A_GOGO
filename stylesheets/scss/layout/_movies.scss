@@ -7,6 +7,14 @@
     display: flex;
     margin: 2rem;
     width: 50%;
+    transform: translateX(25%);
+    opacity: 0;
+    transition: all .5s ease;
+
+    &.visible {
+      transform: translateX(0);
+      opacity: 1;
+    }
     
     &__infos {
       display: flex;

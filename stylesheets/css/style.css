@@ -200,7 +200,13 @@ h1 {
   .movies-section .movie {
     display: flex;
     margin: 2rem;
-    width: 50%; }
+    width: 50%;
+    transform: translateX(25%);
+    opacity: 0;
+    transition: all .5s ease; }
+    .movies-section .movie.visible {
+      transform: translateX(0);
+      opacity: 1; }
     .movies-section .movie__infos {
       display: flex;
       flex-direction: column;
