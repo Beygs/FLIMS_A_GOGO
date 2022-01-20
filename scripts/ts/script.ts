@@ -80,7 +80,7 @@ const showMovie = (movie: Movie): void => {
   arrowUpObserver.observe(moviesSection.querySelector(".movie"));
 }
 
-form.addEventListener("submit", e => {
+form.addEventListener("submit", (e) => {
   e.preventDefault();
   
   page = 1;
@@ -88,6 +88,8 @@ form.addEventListener("submit", e => {
   moviesArray = [];
   
   searchMovie(input.value);
+
+  return false;
 });
 
 

@@ -61,12 +61,13 @@ const showMovie = (movie) => {
     moviesSection.scrollIntoView({ behavior: "smooth" });
     arrowUpObserver.observe(moviesSection.querySelector(".movie"));
 };
-form.addEventListener("submit", e => {
+form.addEventListener("submit", (e) => {
     e.preventDefault();
     page = 1;
     moviesSection.innerHTML = "";
     moviesArray = [];
     searchMovie(input.value);
+    return false;
 });
 const blocker = modal.querySelector(".modal__blocker");
 blocker.addEventListener("click", () => {
