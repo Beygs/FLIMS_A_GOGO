@@ -102,7 +102,18 @@ h1 {
   .modal__card {
     padding: 3rem;
     background-color: white;
-    border-radius: 2rem; }
+    border-radius: 2rem;
+    width: 80%;
+    height: 80%;
+    background-position: center;
+    background-repeat: none;
+    background-size: cover; }
+    .modal__card .card__header {
+      height: 20rem; }
+    .modal__card .rated {
+      position: relative;
+      display: inline-block;
+      height: 1em; }
 
 .blurred {
   filter: blur(5px); }
@@ -170,9 +181,8 @@ h1 {
   align-items: center; }
   .movies-section .movie {
     display: flex;
-    flex-wrap: wrap;
     margin: 2rem;
-    min-width: 50%; }
+    width: 50%; }
     .movies-section .movie__infos {
       display: flex;
       flex-direction: column;

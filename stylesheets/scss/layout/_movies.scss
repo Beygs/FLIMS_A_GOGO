@@ -5,9 +5,8 @@
 
   .movie {
     display: flex;
-    flex-wrap: wrap;
     margin: 2rem;
-    min-width: 50%;
+    width: 50%;
     
     &__infos {
       display: flex;
@@ -18,10 +17,6 @@
 
     &__title {
       margin-bottom: 1.5rem;
-    }
-
-    &__more {
-      
     }
   }
 }

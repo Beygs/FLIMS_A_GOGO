@@ -8,17 +8,20 @@
   <link rel="stylesheet" href="https://unpkg.com/splitting/dist/splitting.css" />
   <link rel="stylesheet" href="https://unpkg.com/splitting/dist/splitting-cells.css" />
   <script src="https://unpkg.com/splitting/dist/splitting.min.js"></script>
+  <script src="https://unpkg.com/country-flag-emoji@latest/dist/country-flag-emoji.umd.min.js"></script>
   <title>FLIMS A GOGO</title>
 </head>
 <body>
   <div class="modal">
     <div class="modal__blocker"></div>
-    <div class="modal__card"></div>
+    <div class="modal__card">
+      <div class="content"></div>
+    </div>
   </div>
   <main>
     <div class="search-section">
       <div class="search-section__card">
-        <h1 data-splitting>FLIMS A GOGO</h1>
+        <h1 data-splitting id="mathias">FLIMS A GOGO</h1>
         <form>
           <label for="movieSearch">Tu veux des infos sur quel flim ?</label>
           <input type="text" name="movieSearch" id="movieSearch" autocomplete="off">

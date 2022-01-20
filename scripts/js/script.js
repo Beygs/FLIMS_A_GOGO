@@ -1,13 +1,12 @@
 import { ENV } from "../env.js";
-import { MovieDetails } from "./_movie_details.js";
+import { MovieDetails, typeTrad } from "./_movie_details.js";
 Splitting();
 const movies = document.querySelector(".movies-section");
 const form = document.querySelector("form");
 const modal = document.querySelector(".modal");
-const moviesArray = [];
+let moviesArray = [];
 const searchMovie = (search, page = 1) => {
     const url = `http://www.omdbapi.com/?apikey=${ENV["OMDB_KEY"]}&s=${search}&p=${page}`;
-    console.log(url);
     fetch(url)
         .then(response => response.json())
         .then(result => result.Search.forEach(movie => movieDetails(movie.Title)))
@@ -24,10 +23,7 @@ const movieDetails = (movieTitle) => {
 };
 const showMovie = (movie) => {
     const { Poster, Title, Type, Year, imdbID } = movie;
-    const typeTrad = {
-        movie: "flim",
-        series: "paflim"
-    };
+    console.log(movie);
     movies.innerHTML += `
   <div class="movie">
     <img data-src="${Poster !== "N/A" ? Poster : "./no_poster.png"}" src="./no_poster.png" alt="Movie Poster" class="movie__poster lazy-image">
@@ -56,6 +52,7 @@ form.addEventListener("submit", e => {
     e.preventDefault();
     const input = form.querySelector("#movieSearch");
     movies.innerHTML = "";
+    moviesArray = [];
     searchMovie(input.value);
 });
 const blocker = modal.querySelector(".modal__blocker");

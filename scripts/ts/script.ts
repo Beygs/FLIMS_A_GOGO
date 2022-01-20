@@ -1,5 +1,5 @@
 import { ENV } from "../env.js";
-import { Movie, MovieDetails } from "./_movie_details.js";
+import { Movie, MovieDetails, typeTrad } from "./_movie_details.js";
 
 declare const Splitting: () => void;
 
@@ -7,13 +7,12 @@ Splitting();
 
 const movies = document.querySelector(".movies-section");
 const form = document.querySelector("form");
-const modal = document.querySelector(".modal");
+const modal: HTMLElement = document.querySelector(".modal");
 
-const moviesArray: MovieDetails[] = [];
+let moviesArray: MovieDetails[] = [];
 
 const searchMovie = (search: string, page = 1): void => {
   const url = `http://www.omdbapi.com/?apikey=${ENV["OMDB_KEY"]}&s=${search}&p=${page}`;
-  console.log(url);
 
   fetch(url)
     .then(response => response.json())
@@ -34,10 +33,7 @@ const movieDetails = (movieTitle: string): void => {
 const showMovie = (movie: Movie): void => {
   const { Poster, Title, Type, Year, imdbID } = movie;
 
-  const typeTrad = {
-    movie: "flim",
-    series: "paflim"
-  }
+  console.log(movie);
   
   movies.innerHTML += `
   <div class="movie">
@@ -52,7 +48,7 @@ const showMovie = (movie: Movie): void => {
     </div>
   </div>
   `
-
+  
   moviesArray.push(new MovieDetails(movie, modal));
 
   const knowMoreBtns = document.querySelectorAll(".movie__more");
@@ -60,12 +56,11 @@ const showMovie = (movie: Movie): void => {
   knowMoreBtns.forEach((btn: HTMLElement) => {
     btn.addEventListener("click", () => {
       const movieId = btn.id;
-
       const movieDetails = moviesArray.find(m => m.imdbID === movieId);
 
       movieDetails.knowMore();
-    })
-  })
+    });
+  });
   
   movies.scrollIntoView({ behavior: "smooth" });
 }
@@ -75,6 +70,7 @@ form.addEventListener("submit", e => {
   
   const input: HTMLInputElement = form.querySelector("#movieSearch");
   movies.innerHTML = "";
+  moviesArray = [];
   
   searchMovie(input.value);
 });
