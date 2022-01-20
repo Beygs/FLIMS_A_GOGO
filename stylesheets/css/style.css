@@ -83,6 +83,30 @@ h1 {
   font-family: "Shrimp", serif;
   font-size: 10vw; }
 
+.modal {
+  position: fixed;
+  z-index: 99;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw; }
+  .modal.active {
+    display: flex; }
+  .modal__blocker {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: -1; }
+  .modal__card {
+    padding: 3rem;
+    background-color: white;
+    border-radius: 2rem; }
+
+.blurred {
+  filter: blur(5px); }
+
 .search-section {
   height: 100vh;
   display: flex;
@@ -140,5 +164,21 @@ h1 {
     transform: translateY(5%); }
   to {
     transform: translateY(0%); } }
+.movies-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+  .movies-section .movie {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 2rem;
+    min-width: 50%; }
+    .movies-section .movie__infos {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin-left: 2rem; }
+    .movies-section .movie__title {
+      margin-bottom: 1.5rem; }
 
 /*# sourceMappingURL=style.css.map */

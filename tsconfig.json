@@ -1,8 +1,11 @@
 {
   "compilerOptions": {
     "module": "ES2015",
+    "target": "ES6",
     "lib": ["DOM", "ES2015"],
-    "watch": true
+    "watch": true,
+    "outDir": "./scripts/js",
+    "rootDir": "./scripts/ts"
   },
   "exclude": [
     "node_modules"

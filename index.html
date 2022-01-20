@@ -11,19 +11,24 @@
   <title>FLIMS A GOGO</title>
 </head>
 <body>
-  <div class="search-section">
-    <div class="search-section__card">
-      <h1 data-splitting>FLIMS A GOGO</h1>
-      <form>
-        <label for="movieSearch">Tu veux des infos sur quel flim ?</label>
-        <input type="text" name="movieSearch" id="movieSearch" autocomplete="off">
-        <input type="submit" value="Chercher le flim">
-      </form>
-    </div>
+  <div class="modal">
+    <div class="modal__blocker"></div>
+    <div class="modal__card"></div>
   </div>
+  <main>
+    <div class="search-section">
+      <div class="search-section__card">
+        <h1 data-splitting>FLIMS A GOGO</h1>
+        <form>
+          <label for="movieSearch">Tu veux des infos sur quel flim ?</label>
+          <input type="text" name="movieSearch" id="movieSearch" autocomplete="off">
+          <input type="submit" value="Chercher le flim">
+        </form>
+      </div>
+    </div>
+    <div class="movies-section"></div>
+  </main>
 
-  <div class="movies-section"></div>
-
-  <script type="module" src="script.js"></script>
+  <script type="module" src="./scripts/js/script.js"></script>
 </body>
 </html>

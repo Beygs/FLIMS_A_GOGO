@@ -1,4 +1,5 @@
-import { ENV } from "./env.js";
+import { ENV } from "../env.js";
+import { Movie, MovieDetails } from "./_movie_details.js";
 
 declare const Splitting: () => void;
 
@@ -6,29 +7,9 @@ Splitting();
 
 const movies = document.querySelector(".movies-section");
 const form = document.querySelector("form");
+const modal = document.querySelector(".modal");
 
-interface Movie {
-  Actors: string;
-  Awards: string;
-  BoxOffice: string;
-  Country: string;
-  Director: string;
-  Genre: string;
-  Language: string;
-  Plot: string;
-  Poster: string;
-  Production: string;
-  Rated: string;
-  Ratings: { Source: string; Value: string; }[];
-  Released: string;
-  Title: string;
-  Type: string;
-  Writer: string;
-  Year: string;
-  Response: "True" | "False";
-  imdbID: string;
-  [key: string]: any;
-}
+const moviesArray: MovieDetails[] = [];
 
 const searchMovie = (search: string, page = 1): void => {
   const url = `http://www.omdbapi.com/?apikey=${ENV["OMDB_KEY"]}&s=${search}&p=${page}`;
@@ -52,20 +33,39 @@ const movieDetails = (movieTitle: string): void => {
   
 const showMovie = (movie: Movie): void => {
   const { Poster, Title, Type, Year, imdbID } = movie;
+
+  const typeTrad = {
+    movie: "flim",
+    series: "paflim"
+  }
   
   movies.innerHTML += `
   <div class="movie">
-    <img data-src="${Poster !== "N/A" ? Poster : "./camera.jpg"}" src="./camera.jpg" alt="Movie Poster" class="movie__poster lazy-image">
-    <h3 class="movie__title">${Title}</h3>
-    <h4 class="movie__type">${Type}</h4>
-    <h4 class="movie__year">${Year}</h4>
-    <a href="#" id="more-${imdbID}">En savoir plus</a>
+    <img data-src="${Poster !== "N/A" ? Poster : "./no_poster.png"}" src="./no_poster.png" alt="Movie Poster" class="movie__poster lazy-image">
+    <div class="movie__infos">
+      <h3 class="movie__title">${Title}</h3>
+      <h4>
+        <span class="movie__type">${typeTrad[Type]}</span>
+        <span class="movie__year">${Year}</span>
+      </h4>
+      <div id="${imdbID}" class="movie__more">En savoir plus</div>
+    </div>
   </div>
   `
 
-  const knowMoreBtn = document.getElementById(`more-${imdbID}`);
+  moviesArray.push(new MovieDetails(movie, modal));
 
-  knowMoreBtn.addEventListener("click", () => knowMore(movie));
+  const knowMoreBtns = document.querySelectorAll(".movie__more");
+
+  knowMoreBtns.forEach((btn: HTMLElement) => {
+    btn.addEventListener("click", () => {
+      const movieId = btn.id;
+
+      const movieDetails = moviesArray.find(m => m.imdbID === movieId);
+
+      movieDetails.knowMore();
+    })
+  })
   
   movies.scrollIntoView({ behavior: "smooth" });
 }
@@ -77,12 +77,14 @@ form.addEventListener("submit", e => {
   movies.innerHTML = "";
   
   searchMovie(input.value);
-
 });
 
-const knowMore = (movie: Movie): void => {
-  console.log(movie);
-}
+
+const blocker = modal.querySelector(".modal__blocker");
+
+blocker.addEventListener("click", () => {
+  modal.classList.remove("active");
+})
 
 
 interface IntersectionObserverEntryImg extends Omit<IntersectionObserverEntry, "target"> {

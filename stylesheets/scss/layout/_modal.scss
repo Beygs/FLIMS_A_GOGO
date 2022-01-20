@@ -1,0 +1,31 @@
+.modal {
+  position: fixed;
+  z-index: 99;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+
+  &.active {
+    display: flex;
+  }
+
+  &__blocker {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: -1;
+  }
+
+  &__card {
+    padding: 3rem;
+    background-color: white;
+    border-radius: 2rem;
+  }
+}
+
+.blurred {
+  filter: blur(5px);
+}
