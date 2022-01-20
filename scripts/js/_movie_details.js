@@ -19,7 +19,7 @@ const ratedIcons = {
     "TV-MA": "tv-ma"
 };
 export class MovieDetails {
-    constructor(_movie, _modal, flag) {
+    constructor(_movie, _modal) {
         this._movie = _movie;
         this._modal = _modal;
     }
@@ -46,7 +46,6 @@ export class MovieDetails {
             countryFlag = "🏳️";
         }
         cardContent.innerHTML = `
-    <div class="card__header"></div>
     <h3 class="title">${Title}</h3>
     <span class="type">(${typeTrad[Type]})</span>
     <p class="details">

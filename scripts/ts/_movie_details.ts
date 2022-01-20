@@ -43,7 +43,7 @@ const ratedIcons = {
 }
 
 export class MovieDetails {
-  constructor(private _movie: Movie, private _modal: HTMLElement, flag: string) {}
+  constructor(private _movie: Movie, private _modal: HTMLElement) {}
 
   get movie() {
     return this._movie;
@@ -89,7 +89,6 @@ export class MovieDetails {
     }
 
     cardContent.innerHTML = `
-    <div class="card__header"></div>
     <h3 class="title">${Title}</h3>
     <span class="type">(${typeTrad[Type]})</span>
     <p class="details">
