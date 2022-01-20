@@ -1,0 +1,70 @@
+.search-section {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-image: url("https://api.lorem.space/image/movie?w=2000&h=2000");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  &__card {
+    background-color: rgba(255, 255, 255, 1);
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+    padding: 3em;
+    border-radius: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h1 {
+      color: rgb(133, 133, 133);
+      
+      .char {
+        animation: waves 3s infinite alternate;
+      }
+
+      @for $i from 0 through 5 {
+        .char:nth-of-type(#{$i}) {
+          animation-delay: $i * 150ms;
+        }
+      }
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 2rem;
+      mix-blend-mode: hard-light;
+
+      label {
+        margin: .5rem;
+      }
+
+      input {
+        margin: .5rem;
+        border-radius: 2rem;
+        border: none;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+        padding: .4em 1em;
+        text-align: center;
+      }
+    }
+  }
+}
+
+@keyframes waves {
+  from {
+    transform: translateY(0%);
+  }
+
+  50% {
+    transform: translateY(5%);
+  }
+  
+  to {
+    transform: translateY(0%);
+  }
+}

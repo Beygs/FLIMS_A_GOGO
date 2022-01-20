@@ -1,6 +1,10 @@
 import { ENV } from "./env.js";
 
-const movies = document.querySelector(".movies");
+declare const Splitting: () => void;
+
+Splitting();
+
+const movies = document.querySelector(".movies-section");
 const form = document.querySelector("form");
 
 interface Movie {
@@ -22,6 +26,7 @@ interface Movie {
   Writer: string;
   Year: string;
   Response: "True" | "False";
+  imdbID: string;
   [key: string]: any;
 }
 
@@ -45,17 +50,24 @@ const movieDetails = (movieTitle: string): void => {
     .catch(error => console.error("Oups ! Une erreur a été rencontrée =>" + error));
   }
   
-  const showMovie = (movieInfos: Movie): void => {
-    const { Poster, Title, Type, Year } = movieInfos;
-    
-    movies.innerHTML += `
-    <div class="movie">
-    <img data-src="${Poster !== "N/A" ? Poster : "./camera.jpg"}" src="./camera.jpg" alt="Movie Poster" class="movie__poster">
+const showMovie = (movie: Movie): void => {
+  const { Poster, Title, Type, Year, imdbID } = movie;
+  
+  movies.innerHTML += `
+  <div class="movie">
+    <img data-src="${Poster !== "N/A" ? Poster : "./camera.jpg"}" src="./camera.jpg" alt="Movie Poster" class="movie__poster lazy-image">
     <h3 class="movie__title">${Title}</h3>
     <h4 class="movie__type">${Type}</h4>
-      <h4 class="movie__year>${Year}</h4>
-      </div>
+    <h4 class="movie__year">${Year}</h4>
+    <a href="#" id="more-${imdbID}">En savoir plus</a>
+  </div>
   `
+
+  const knowMoreBtn = document.getElementById(`more-${imdbID}`);
+
+  knowMoreBtn.addEventListener("click", () => knowMore(movie));
+  
+  movies.scrollIntoView({ behavior: "smooth" });
 }
 
 form.addEventListener("submit", e => {
@@ -65,19 +77,31 @@ form.addEventListener("submit", e => {
   movies.innerHTML = "";
   
   searchMovie(input.value);
+
 });
 
-const lazyLoadImages = () => {
+const knowMore = (movie: Movie): void => {
+  console.log(movie);
+}
+
+
+interface IntersectionObserverEntryImg extends Omit<IntersectionObserverEntry, "target"> {
+  target: HTMLImageElement;
+}
+
+const lazyLoadImages = (): void => {
   const imageObserver = new IntersectionObserver((entries, imgObserver) => {
-    entries.forEach(entry => {
+    entries.forEach((entry: IntersectionObserverEntryImg) => {
       if(entry.isIntersecting) {
         const lazyImg = entry.target;
         lazyImg.src = lazyImg.dataset.src;
+        lazyImg.classList.remove("lazy-image");
+        imgObserver.unobserve(lazyImg);
       }
     });
   });
   
-  const posters = document.querySelectorAll(".movie__poster")
+  const posters = document.querySelectorAll(".lazy-image")
   
-  posters.forEach(poster => imageObserver.observe(poster));
+  posters.forEach((poster: HTMLImageElement) => imageObserver.observe(poster));
 }

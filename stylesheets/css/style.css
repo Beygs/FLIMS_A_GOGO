@@ -1,0 +1,144 @@
+@import url("https://fonts.googleapis.com/css2?family=Epilogue&display=swap");
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  line-height: calc(1em + 0.5rem); }
+
+html,
+body {
+  height: 100%; }
+
+html {
+  -webkit-text-size-adjust: none;
+  -webkit-font-smoothing: subpixel-antialiased;
+  -webkit-font-smoothing: antialiased; }
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%; }
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  display: block;
+  outline: none; }
+  input:focus,
+  button:focus,
+  textarea:focus,
+  select:focus {
+    outline: none; }
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word; }
+
+input[type='submit']:hover,
+button:hover {
+  cursor: pointer; }
+
+input::-ms-clear {
+  display: none; }
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  transition: background-color 5000s ease-in-out 0s; }
+
+textarea {
+  overflow: auto; }
+
+a {
+  text-decoration: none; }
+
+@font-face {
+  font-family: "Shrimp";
+  src: url("/fonts/SHRIMP.ttf"); }
+html {
+  font-size: 20px; }
+
+body {
+  font-family: 'Epilogue', sans-serif; }
+
+h1 {
+  font-family: "Shrimp", serif;
+  font-size: 10vw; }
+
+.search-section {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-image: url("https://api.lorem.space/image/movie?w=2000&h=2000");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center; }
+  .search-section__card {
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+    padding: 3em;
+    border-radius: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center; }
+    .search-section__card h1 {
+      color: #858585; }
+      .search-section__card h1 .char {
+        animation: waves 3s infinite alternate; }
+      .search-section__card h1 .char:nth-of-type(0) {
+        animation-delay: 0ms; }
+      .search-section__card h1 .char:nth-of-type(1) {
+        animation-delay: 150ms; }
+      .search-section__card h1 .char:nth-of-type(2) {
+        animation-delay: 300ms; }
+      .search-section__card h1 .char:nth-of-type(3) {
+        animation-delay: 450ms; }
+      .search-section__card h1 .char:nth-of-type(4) {
+        animation-delay: 600ms; }
+      .search-section__card h1 .char:nth-of-type(5) {
+        animation-delay: 750ms; }
+    .search-section__card form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 2rem;
+      mix-blend-mode: hard-light; }
+      .search-section__card form label {
+        margin: .5rem; }
+      .search-section__card form input {
+        margin: .5rem;
+        border-radius: 2rem;
+        border: none;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+        padding: .4em 1em;
+        text-align: center; }
+
+@keyframes waves {
+  from {
+    transform: translateY(0%); }
+  50% {
+    transform: translateY(5%); }
+  to {
+    transform: translateY(0%); } }
+
+/*# sourceMappingURL=style.css.map */
