@@ -103,7 +103,8 @@ h1 {
     padding: 3rem;
     background-color: white;
     border-radius: 2rem;
-    width: 50%;
+    max-width: 1250px;
+    width: 90%;
     max-height: 95%;
     overflow-y: auto;
     background-position: center;
@@ -113,7 +114,10 @@ h1 {
       display: flex;
       justify-content: space-around;
       align-items: center;
-      margin-bottom: 2rem; }
+      margin-bottom: 2rem;
+      flex-wrap: wrap; }
+      .modal__card .header iframe {
+        margin-top: 1rem; }
     .modal__card .type {
       margin-bottom: 1rem; }
     .modal__card .details {

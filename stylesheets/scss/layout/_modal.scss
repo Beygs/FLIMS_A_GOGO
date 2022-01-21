@@ -23,7 +23,8 @@
     padding: 3rem;
     background-color: white;
     border-radius: 2rem;
-    width: 50%;
+    max-width: 1250px;
+    width: 90%;
     max-height: 95%;
     overflow-y: auto;
     background-position: center;
@@ -35,6 +36,11 @@
       justify-content: space-around;
       align-items: center;
       margin-bottom: 2rem;
+      flex-wrap: wrap;
+
+      iframe {
+        margin-top: 1rem;
+      }
     }
 
     .type {
