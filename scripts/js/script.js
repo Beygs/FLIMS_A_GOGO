@@ -13,7 +13,6 @@ let page = 1;
 let moviesArray = [];
 const searchMovie = (search) => {
     const url = `https://www.omdbapi.com/?apikey=${ENV["OMDB_KEY"]}&s=${search}&page=${page}`;
-    console.log(url);
     fetch(url)
         .then(response => response.json())
         .then(result => result.Search.forEach(movie => movieDetails(movie.Title)))
