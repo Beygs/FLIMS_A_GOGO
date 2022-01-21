@@ -104,6 +104,8 @@ h1 {
     background-color: white;
     border-radius: 2rem;
     width: 50%;
+    max-height: 95%;
+    overflow-y: auto;
     background-position: center;
     background-repeat: none;
     background-size: cover; }
